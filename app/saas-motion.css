@@ -1,0 +1,430 @@
+/* Viewport-fitted recording stage and original Magic UI-inspired effects. */
+@property --s-beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.saas-ui.s-experience {
+  height: 100svh;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 50px 88px minmax(0, 1fr) 54px 22px;
+  overflow: hidden;
+}
+.saas-ui .s-lab-header { padding: 8px 3.5vw; }
+.saas-ui .s-lab-header .s-logo { font-size: 29px; }
+.saas-ui .s-lab-header .s-brand { font-size: 15px; }
+.saas-ui .s-lab-header .s-brand small { font-size: 5px; margin-top: 4px; }
+.saas-ui .s-experience-heading { padding: 12px 3.5vw; margin: 0 auto; width: 100%; }
+.saas-ui .s-experience-heading h1 { font-size: 29px; margin: 3px 0 4px; letter-spacing: -1px; }
+.saas-ui .s-experience-heading .s-overline { font-size: 8px; letter-spacing: 1.5px; }
+.saas-ui .s-experience-heading p { font-size: 10px; }
+.saas-ui .s-experience-controls { gap: 7px; }
+.saas-ui .s-experience-controls .s-tabs { padding: 3px; }
+.saas-ui .s-experience-controls .s-tabs button { font-size: 9px; padding: 5px 10px; }
+.saas-ui .s-experience-controls > .s-row { gap: 14px; }
+.saas-ui .s-play-magic {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid #c493ff55;
+  border-radius: 6px;
+  color: #e0c6ff;
+  background: linear-gradient(105deg, #a639ec30, #277fe918);
+  box-shadow: 0 0 18px #9e54ff12;
+  font-size: 9px;
+}
+.saas-ui .s-play-magic:hover { border-color: #d4a8ff; box-shadow: 0 0 20px #b277ff3b; }
+.saas-ui .s-playground {
+  min-height: 0;
+  width: 100%;
+  padding: 0 3.5vw;
+  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+}
+.saas-ui .s-playground.preview-only, .saas-ui .s-playground.code-only { grid-template-columns: minmax(0, 1fr); }
+.saas-ui .s-code-panel, .saas-ui .s-preview-area { min-height: 0; max-height: none; height: 100%; }
+.saas-ui .s-preview-area { grid-row: auto; isolation: isolate; background: #070d21; }
+.saas-ui .s-code-header { padding: 10px 15px; flex-shrink: 0; flex-wrap: nowrap; }
+.saas-ui .s-code-tabs { padding: 6px 12px; flex-shrink: 0; }
+.saas-ui .s-code-tabs .s-tabs button { font-size: 8px; }
+.saas-ui .s-code-panel pre {
+  min-height: 0;
+  max-height: none;
+  padding: 12px 12px 14px 0;
+  font: 10px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace;
+  overflow: auto;
+}
+.saas-ui .s-code-line {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  min-height: 18px;
+  animation: s-code-reveal .35s both;
+  animation-delay: var(--line-delay);
+}
+.saas-ui .s-line-number { flex-shrink: 0; width: 34px; margin-right: 15px; }
+.saas-ui .s-code-line > span:last-child { white-space: pre; padding-right: 15px; }
+.saas-ui .s-code-line:hover { background: #9670ff0e; }
+.saas-ui .s-code-terminal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  align-items: center;
+  padding: 11px 15px;
+  border-top: 1px solid #98aaf01a;
+  background: linear-gradient(100deg, #10242766, #0a142c66);
+  font: 8px/1.5 monospace;
+  flex-shrink: 0;
+}
+.saas-ui .s-code-terminal > span:first-child { color: #648f8c; }
+.saas-ui .s-code-terminal b { display: flex; align-items: center; gap: 5px; font-weight: 400; color: #87d4b6; }
+.saas-ui .s-terminal-bars { margin-left: auto; display: flex; align-items: center; gap: 3px; height: 16px; }
+.saas-ui .s-terminal-bars i { width: 2px; height: 12px; border-radius: 4px; background: #59c8bf; animation: s-terminal-wave 1.8s ease-in-out infinite; animation-delay: var(--delay); }
+.saas-ui .s-code-footer { flex-shrink: 0; padding: 6px 12px; font-size: 7px; }
+.saas-ui .s-preview-label { padding: 11px 16px; position: relative; z-index: 2; flex-shrink: 0; font-size: 7px; }
+.saas-ui .s-fit-viewport {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8571b8 transparent;
+  scroll-padding-block: 16px;
+}
+.saas-ui .s-fit-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 16px 26px 28px;
+}
+.saas-ui .s-demo-note { position: relative; z-index: 2; font-size: 8px; padding: 6px 12px 10px; flex-shrink: 0; }
+.saas-ui .s-component-pagination { padding: 5px 3.5vw 0; margin: 0 auto; width: 100%; }
+.saas-ui .s-component-pagination b { font-size: 10px; }
+.saas-ui .s-component-pagination small { font-size: 7px; margin: 0; }
+.saas-ui .s-pagination-grid { padding: 7px 10px; }
+.saas-ui .s-experience-footer { padding: 0; gap: 13px; font-size: 7px; letter-spacing: 2px; }
+
+/* Compact auth composition, leaving room for both the code and live result. */
+.saas-ui .s-auth { max-width: 360px; padding: 18px 25px; }
+.saas-ui .s-auth-brand { position: relative; margin: 0 auto 15px; width: fit-content; }
+.saas-ui .s-auth-brand > .s-brand { flex-direction: row; justify-content: center; gap: 11px; font-size: 20px; text-align: left; }
+.saas-ui .s-auth-brand .s-logo { font-size: 38px; line-height: 1; }
+.saas-ui .s-auth-brand .s-brand small { font-size: 6px; margin-top: 5px; }
+.saas-ui .s-auth h2 { font-size: 24px; margin-bottom: 8px; letter-spacing: -.8px; }
+.saas-ui .s-auth .s-subtitle { font-size: 11px; margin-bottom: 12px; }
+.saas-ui .s-auth .s-field { margin: 8px 0; gap: 4px; font-size: 10px; }
+.saas-ui .s-auth .s-input-wrap { min-height: 38px; padding: 0 12px; }
+.saas-ui .s-auth .s-input-wrap input { padding: 8px 0; font-size: 12px; }
+.saas-ui .s-auth .s-button, .saas-ui .s-auth .s-secondary { min-height: 40px; font-size: 11px; padding: 10px 15px; }
+.saas-ui .s-auth .s-strength { margin: 10px 0 12px; }
+.saas-ui .s-auth .s-strength small { font-size: 9px; margin-top: 7px; }
+.saas-ui .s-auth .s-auth-bottom { margin-top: 12px; padding-top: 10px; font-size: 10px; }
+.saas-ui .s-auth .s-check { margin: 12px 0; font-size: 9px; }
+.saas-ui .s-auth .s-form-options { margin: 0 0 6px; font-size: 9px; gap: 5px; }
+.saas-ui .s-auth .s-notice { padding: 13px; margin-top: 14px; font-size: 10px; }
+.saas-ui .s-auth .s-auth-symbol { width: 54px; height: 54px; margin: 17px auto; }
+.saas-ui .s-auth .s-auth-symbol svg { width: 26px; }
+.saas-ui .s-auth .s-steps { margin: 20px 0; }
+.saas-ui .s-auth .s-help { font-size: 9px; }
+.saas-ui .s-wide { padding: 24px; }
+.saas-ui .s-sidebar-demo, .saas-ui .s-header-demo { padding: 0; }
+
+/* A travelling violet/cyan beam and cursor-directed illumination. */
+.saas-ui .s-panel {
+  transform: none;
+  transition: box-shadow .4s;
+  animation: s-cinematic-enter .7s cubic-bezier(.2,.7,.2,1);
+  background: radial-gradient(ellipse at 8% 0, #9a54f521, transparent 45%), linear-gradient(135deg, #11172ef5, #070e21fa 58%, #161033f5);
+  box-shadow: 0 0 0 1px #8c4bef25, 0 0 22px #8440eb2d, 0 24px 60px #0007;
+}
+.saas-ui .s-panel::before {
+  inset: -1px;
+  padding: 1.5px;
+  background: conic-gradient(from var(--s-beam-angle), transparent 0deg, #725cff30 50deg, #95dfff 75deg, #f3d6ff 85deg, #c24fff 100deg, transparent 140deg, transparent 225deg, #7543ff80 250deg, #d881ff 270deg, transparent 305deg);
+  opacity: 1;
+  animation: s-beam-orbit 7s linear infinite;
+  filter: drop-shadow(0 0 5px #b97cff);
+  z-index: 4;
+}
+.saas-ui .s-panel::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  width: 70%;
+  height: 15px;
+  bottom: -12px;
+  left: 15%;
+  background: linear-gradient(90deg, #3468ff, #c548ff, #3289ff);
+  filter: blur(17px);
+  opacity: .55;
+  animation: s-underlight 4s ease-in-out infinite;
+}
+.saas-ui .s-card-spotlight { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(220px circle at var(--glow-x, 25%) var(--glow-y, 0%), #ac77ff20, transparent 80%); z-index: 0; }
+.saas-ui .s-card-scan { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.saas-ui .s-card-scan::after { content: ''; position: absolute; top: -50%; left: -50%; width: 180%; height: 32%; background: linear-gradient(transparent, #b79cff09, transparent); transform: rotate(-25deg); animation: s-card-scan 9s ease-in-out infinite; }
+.saas-ui .s-panel > :not(.s-card-spotlight):not(.s-card-scan) { position: relative; }
+.saas-ui .s-panel .s-dropdown { position: absolute; }
+.saas-ui .s-auth form > .s-field { animation: s-field-arrive .5s both; animation-delay: .12s; }
+.saas-ui .s-auth form > .s-field:nth-child(2) { animation-delay: .22s; }
+.saas-ui .s-auth form > .s-field:nth-child(3) { animation-delay: .32s; }
+.saas-ui .s-auth h2 { animation: s-title-focus .8s; }
+.saas-ui .s-logo-orbit { position: absolute; top: -8px; left: 17px; width: 55px; height: 55px; margin-left: -27.5px; pointer-events: none; border: 1px solid #9b7cff18; border-radius: 50%; transform: rotateX(55deg) rotateZ(-25deg); }
+.saas-ui .s-logo-orbit i { position: absolute; inset: -1px; border: 1px solid transparent; border-top-color: #7edbff; border-radius: 50%; animation: s-logo-spin 4s linear infinite; }
+.saas-ui .s-logo-orbit i::before { content: ''; position: absolute; top: 6px; right: 5px; width: 4px; height: 4px; border-radius: 50%; background: #a4eaff; box-shadow: 0 0 9px #7ddfff; }
+.saas-ui .s-logo-orbit i:nth-child(2) { animation-delay: -2s; border-top-color: #d786ff; }
+.saas-ui .s-button { background-size: 180% 100%; animation: s-gradient-flow 5s ease-in-out infinite; }
+.saas-ui .s-button::after { animation-duration: 3.5s; }
+.saas-ui .s-button:active:not(:disabled) { transform: scale(.975); }
+.saas-ui .s-secondary { position: relative; overflow: hidden; }
+.saas-ui .s-button-ripple { position: absolute; left: var(--ripple-x, 50%); top: var(--ripple-y, 50%); width: 1px; height: 1px; border-radius: 50%; background: #fff3; transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; }
+.saas-ui button:active > .s-button-ripple { transform: translate(-50%, -50%) scale(500); opacity: 1; transition: transform .65s, opacity .65s; }
+.saas-ui .s-input-wrap:focus-within { border-color: #b993ff; box-shadow: 0 0 0 3px #9c59ff18, 0 0 22px #9966ff25, inset 0 0 12px #a05afa07; }
+.saas-ui .s-input-wrap:focus-within > svg { color: #cfb0ff; filter: drop-shadow(0 0 5px #ba83ff90); }
+.saas-ui .s-notice { position: relative; animation: s-success-arrive .55s cubic-bezier(.15,1.2,.4,1) both; }
+.saas-ui .s-success-icon { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; flex-shrink: 0; background: #51e9b821; border: 1px solid #63e3c257; border-radius: 50%; box-shadow: 0 0 20px #3adcac17; }
+.saas-ui .s-error .s-success-icon { background: #e95a7320; border-color: #ed789c40; }
+.saas-ui .s-success-icon svg { width: 16px; stroke-dasharray: 40; stroke-dashoffset: 40; animation: s-draw-check .8s .15s forwards; }
+.saas-ui .s-success-particles { position: absolute; left: 26px; top: 50%; width: 1px; height: 1px; pointer-events: none; }
+.saas-ui .s-success-particles i { position: absolute; width: 4px; height: 7px; border-radius: 2px; background: #7ae6ce; animation: s-success-burst 1.3s both; animation-delay: var(--delay); }
+.saas-ui .s-success-particles i:nth-child(3n) { background: #cf8fff; }
+.saas-ui .s-success-particles i:nth-child(3n + 1) { background: #6ccfff; }
+
+/* Continuous atmosphere: drifting aurora, orbit paths, stars and meteor trails. */
+.saas-ui .s-magic-atmosphere { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; border-radius: inherit; }
+.saas-ui .s-aurora { position: absolute; width: 65%; height: 65%; border-radius: 50%; filter: blur(55px); opacity: .35; will-change: transform; }
+.saas-ui .s-aurora-one { left: -25%; top: -10%; background: radial-gradient(ellipse, #9033ef, #34106440 65%, transparent 75%); animation: s-aurora-drift 11s ease-in-out infinite alternate; }
+.saas-ui .s-aurora-two { right: -25%; bottom: -5%; background: radial-gradient(ellipse, #1955fd, #23388e40 65%, transparent 75%); animation: s-aurora-drift 13s -5s ease-in-out infinite alternate-reverse; }
+.saas-ui .s-orbit-system { position: absolute; top: 50%; left: 50%; width: 520px; height: 520px; transform: translate(-50%, -50%) rotateX(55deg) rotateZ(-20deg); }
+.saas-ui .s-orbit-system > i { position: absolute; inset: 0; border: 1px solid #a786ff25; border-radius: 50%; animation: s-logo-spin 20s linear infinite; }
+.saas-ui .s-orbit-system > i::before { content: ''; position: absolute; width: 5px; height: 5px; top: 15%; left: 15%; border-radius: 50%; background: #af8eff; box-shadow: 0 0 15px #b092ff, 0 0 30px #ab66ff; }
+.saas-ui .s-orbit-system > i:nth-child(2) { inset: -65px; animation-duration: 29s; animation-direction: reverse; border-color: #639efd15; }
+.saas-ui .s-orbit-system > i:nth-child(2)::before { background: #5ad7ff; }
+.saas-ui .s-orbit-system > i:nth-child(3) { inset: 70px; animation-duration: 15s; }
+.saas-ui .s-perspective-grid { position: absolute; left: -25%; right: -25%; bottom: -36%; height: 65%; background-image: linear-gradient(#9b66fc24 1px, transparent 1px), linear-gradient(90deg, #9b66fc24 1px, transparent 1px); background-size: 35px 35px; transform: perspective(250px) rotateX(55deg); mask-image: linear-gradient(transparent, #0007); animation: s-grid-flow 4s linear infinite; }
+.saas-ui .s-dust { position: absolute; left: var(--x); top: var(--y); width: 2px; height: 2px; border-radius: 50%; background: #b6baff; box-shadow: 0 0 7px #c397ff; animation: s-dust-drift var(--duration) ease-in-out infinite; animation-delay: var(--delay); }
+.saas-ui .s-dust:nth-of-type(3n) { width: 3px; height: 3px; background: #78dfff; }
+.saas-ui .s-meteor { position: absolute; top: -20%; left: var(--x); width: 1px; height: 110px; opacity: 0; background: linear-gradient(transparent, #9b88fa77, #d4b9ff); border-radius: 50%; transform: rotate(-40deg); animation: s-meteor-fall var(--duration) linear infinite; animation-delay: var(--delay); }
+.saas-ui .s-meteor::after { content: ''; position: absolute; bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: white; box-shadow: 0 0 7px #b592ff; }
+.saas-ui .s-floating-tag { position: absolute; display: flex; align-items: center; gap: 5px; padding: 6px 9px; background: #121a3c75; border: 1px solid #b99afa2b; border-radius: 6px; font: 6px monospace; letter-spacing: 1px; color: #b8a6df; backdrop-filter: blur(10px); animation: s-tag-drift 6s ease-in-out infinite; }
+.saas-ui .s-floating-tag-one { left: 4%; top: 18%; transform: rotate(-8deg); }
+.saas-ui .s-floating-tag-two { right: 3%; bottom: 14%; animation-delay: -3s; }
+
+/* Cinema mode removes gallery chrome and gives recording more room. */
+.saas-ui.s-cinema { grid-template-rows: 0 56px minmax(0, 1fr) 0 18px; }
+.saas-ui.s-cinema .s-lab-header, .saas-ui.s-cinema .s-component-pagination { visibility: hidden; padding: 0; overflow: hidden; }
+.saas-ui.s-cinema .s-experience-heading { padding-block: 5px; }
+.saas-ui.s-cinema .s-experience-heading h1 { font-size: 20px; }
+.saas-ui.s-cinema .s-experience-heading p, .saas-ui.s-cinema .s-experience-heading .s-overline { display: none; }
+.saas-ui.s-cinema .s-experience-controls { flex-direction: row; align-items: center; gap: 18px; }
+
+@keyframes s-beam-orbit { to { --s-beam-angle: 360deg; } }
+@keyframes s-code-reveal { from { opacity: 0; transform: translateX(-5px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes s-terminal-wave { 0%, 100% { transform: scaleY(.25); opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }
+@keyframes s-cinematic-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes s-field-arrive { from { opacity: 0; translate: 0 9px; } to { opacity: 1; translate: 0 0; } }
+@keyframes s-title-focus { from { opacity: 0; } to { opacity: 1; } }
+@keyframes s-logo-spin { to { transform: rotate(360deg); } }
+@keyframes s-underlight { 50% { opacity: .85; transform: scaleX(.8); } }
+@keyframes s-card-scan { 0%, 30% { top: -50%; } 65%, 100% { top: 150%; } }
+@keyframes s-gradient-flow { 50% { background-position: 100% 50%; } }
+@keyframes s-success-arrive { from { opacity: 0; translate: 0 10px; scale: .96; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes s-draw-check { to { stroke-dashoffset: 0; } }
+@keyframes s-success-burst { 0% { transform: rotate(var(--angle)) translateY(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: rotate(var(--angle)) translateY(calc(-1 * var(--distance))) rotate(150deg); opacity: 0; } }
+@keyframes s-aurora-drift { to { transform: translate(30%, 25%) rotate(35deg) scale(1.25); } }
+@keyframes s-grid-flow { to { background-position: 0 35px; } }
+@keyframes s-dust-drift { 0%, 100% { opacity: .15; translate: 0 8px; } 50% { opacity: .9; translate: 8px -12px; } }
+@keyframes s-meteor-fall { 0% { transform: translate(-60px, -120px) rotate(-40deg); opacity: 0; } 5% { opacity: .75; } 32% { transform: translate(440px, 660px) rotate(-40deg); opacity: 0; } 100% { transform: translate(440px, 660px) rotate(-40deg); opacity: 0; } }
+@keyframes s-tag-drift { 50% { translate: 0 -9px; } }
+
+@media (min-width: 1500px) and (min-height: 850px) {
+  .saas-ui.s-experience { grid-template-rows: 62px 110px minmax(0, 1fr) 66px 28px; }
+  .saas-ui .s-experience-heading h1 { font-size: 38px; }
+  .saas-ui .s-auth { max-width: 405px; padding: 32px; }
+  .saas-ui .s-auth h2 { font-size: 28px; }
+  .saas-ui .s-code-panel pre { font-size: 12px; line-height: 1.9; }
+  .saas-ui.s-cinema { grid-template-rows: 0 60px minmax(0, 1fr) 0 22px; }
+}
+@media (max-width: 900px) {
+  .saas-ui .s-playground { grid-template-columns: minmax(0, 1fr); padding: 0 18px; }
+  .saas-ui .s-playground:not(.code-only) > .s-code-panel { display: none; }
+  .saas-ui .s-experience-controls .s-tabs button:first-child { display: none; }
+  .saas-ui .s-fit-content { padding-inline: 24px; }
+  .saas-ui .s-code-header > span:nth-child(2) { font-size: 11px; }
+  .saas-ui .s-auth { max-width: 390px; }
+  .saas-ui .s-wide { max-width: 740px; }
+  .saas-ui .s-sidebar-demo { grid-template-columns: 185px minmax(0, 1fr); }
+  .saas-ui .s-sidebar-demo.is-collapsed { grid-template-columns: 65px minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .saas-ui.s-experience { grid-template-rows: 43px 133px minmax(0, 1fr) 51px 19px; }
+  .saas-ui .s-lab-header { padding: 7px 18px; }
+  .saas-ui .s-experience-heading { padding: 10px 18px; gap: 9px; }
+  .saas-ui .s-experience-heading h1 { font-size: 28px; margin: 2px 0 3px; }
+  .saas-ui .s-experience-heading p { font-size: 9px; }
+  .saas-ui .s-experience-heading > .s-experience-controls { flex-direction: row; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .saas-ui .s-experience-controls > .s-row { gap: 7px; }
+  .saas-ui .s-experience-controls .s-tabs button { padding: 4px 7px; font-size: 8px; }
+  .saas-ui .s-quiet { font-size: 8px; padding: 2px; }
+  .saas-ui .s-play-magic { font-size: 8px; padding: 4px 7px; }
+  .saas-ui .s-playground { padding: 0 10px; }
+  .saas-ui .s-fit-content { padding-inline: 15px; }
+  .saas-ui .s-auth { padding: 22px; max-width: 350px; }
+  .saas-ui .s-auth-brand { margin-bottom: 15px; }
+  .saas-ui .s-auth h2 { font-size: 24px; }
+  .saas-ui .s-auth .s-subtitle { font-size: 10px; }
+  .saas-ui .s-preview-label { padding: 9px 12px; font-size: 6px; }
+  .saas-ui .s-demo-note { font-size: 7px; padding: 5px 9px 8px; }
+  .saas-ui .s-component-pagination { padding: 4px 18px 0; }
+  .saas-ui .s-component-pagination small { font-size: 6px; }
+  .saas-ui .s-component-pagination b { font-size: 9px; }
+  .saas-ui .s-floating-tag { display: none; }
+  .saas-ui .s-wide { padding: 20px; }
+  .saas-ui .s-sidebar-demo, .saas-ui .s-header-demo { padding: 0; }
+  .saas-ui .s-sidebar-demo { grid-template-columns: 148px minmax(0, 1fr); }
+  .saas-ui.s-cinema { grid-template-rows: 0 100px minmax(0, 1fr) 0 19px; }
+  .saas-ui.s-cinema .s-experience-heading { gap: 5px; }
+  .saas-ui.s-cinema .s-experience-heading > .s-experience-controls { flex-wrap: wrap; }
+}
+@media (max-height: 560px) and (min-width: 601px) {
+  .saas-ui.s-experience { grid-template-rows: 36px 72px minmax(0, 1fr) 43px 17px; }
+  .saas-ui .s-experience-heading { padding-block: 7px; }
+  .saas-ui .s-experience-heading h1 { font-size: 25px; }
+  .saas-ui .s-lab-header .s-brand small { display: none; }
+  .saas-ui.s-cinema { grid-template-rows: 0 52px minmax(0, 1fr) 0 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .saas-ui *, .saas-ui *::before, .saas-ui *::after { animation: none !important; transition: none !important; }
+  .saas-ui .s-panel { transform: none; }
+  .saas-ui .s-success-icon svg { stroke-dashoffset: 0; }
+  .saas-ui .s-success-particles { display: none; }
+}
+.saas-ui.s-motion-off .s-panel { transform: none; }
+.saas-ui.s-motion-off .s-success-icon svg { stroke-dashoffset: 0; }
+.saas-ui.s-motion-off .s-success-particles { display: none; }
+
+/* Keep interactive text readable at its actual size, including on focus. */
+.saas-ui .s-fit-content .s-field { font-size: 12px; color: #d4d8eb; }
+.saas-ui .s-fit-content .s-input-wrap input,
+.saas-ui .s-fit-content textarea { font-size: 14px; color: #f4f4fd; }
+.saas-ui .s-fit-content .s-panel-heading p,
+.saas-ui .s-fit-content .s-subtitle,
+.saas-ui .s-fit-content .s-person small { font-size: 12px; color: #b6c2d8; }
+.saas-ui .s-fit-content .s-tabs button { font-size: 12px; }
+.saas-ui .s-fit-content .s-button,
+.saas-ui .s-fit-content .s-secondary { font-size: 13px; }
+.saas-ui .s-fit-content .s-input-wrap:focus-within,
+.saas-ui .s-fit-content textarea:focus-visible {
+  border-color: #c6a6ff;
+  box-shadow: 0 0 0 3px #a77bff26;
+}
+@media (max-width: 600px) {
+  .saas-ui .s-fit-content .s-input-wrap input,
+  .saas-ui .s-fit-content textarea { font-size: 16px; }
+}
+
+/* Preview only uses the entire browser viewport, with a compact exit toolbar. */
+.saas-ui.s-preview-fullscreen {
+  height: 100dvh;
+  grid-template-rows: 48px minmax(0, 1fr);
+}
+.saas-ui.s-preview-fullscreen .s-lab-header,
+.saas-ui.s-preview-fullscreen .s-component-pagination,
+.saas-ui.s-preview-fullscreen .s-experience-footer { display: none; }
+.saas-ui.s-preview-fullscreen .s-experience-heading {
+  padding: 6px 20px;
+  gap: 16px;
+  max-width: none;
+  flex-direction: row;
+  align-items: center;
+}
+.saas-ui.s-preview-fullscreen .s-experience-heading h1 { font-size: 18px; margin: 0; letter-spacing: -.5px; }
+.saas-ui.s-preview-fullscreen .s-experience-heading p,
+.saas-ui.s-preview-fullscreen .s-experience-heading .s-overline,
+.saas-ui.s-preview-fullscreen .s-experience-controls > .s-row > button:last-child { display: none; }
+.saas-ui.s-preview-fullscreen .s-experience-controls { flex-direction: row; align-items: center; gap: 16px; }
+.saas-ui.s-preview-fullscreen .s-playground { padding: 0; max-width: none; }
+.saas-ui.s-preview-fullscreen .s-preview-area { border-radius: 0; border-inline: 0; border-bottom: 0; }
+.saas-ui.s-preview-fullscreen .s-preview-label { padding-block: 6px; }
+.saas-ui.s-preview-fullscreen .s-demo-note { padding-block: 4px; }
+.saas-ui.s-preview-fullscreen .s-fit-content { padding: 8px 24px 12px; }
+.saas-ui.s-preview-fullscreen .s-panel { padding: 20px 24px; }
+.saas-ui.s-preview-fullscreen .s-panel-heading { margin-bottom: 16px; }
+.saas-ui.s-preview-fullscreen .s-field { margin-block: 10px; gap: 5px; }
+.saas-ui.s-preview-fullscreen .s-notice { margin-top: 12px; padding: 10px 12px; }
+.saas-ui.s-preview-fullscreen .s-sidebar-demo,
+.saas-ui.s-preview-fullscreen .s-header-demo { padding: 0; }
+
+/* Use the extra width for profile fields instead of shrinking the rendered text. */
+.saas-ui.s-preview-fullscreen .s-settings { max-width: 680px; padding-block: 16px; }
+.saas-ui.s-preview-fullscreen .s-settings .s-panel-heading { margin-bottom: 12px; }
+.saas-ui.s-preview-fullscreen .s-settings .s-profile { margin: 8px 0; }
+.saas-ui.s-preview-fullscreen .s-settings .s-field { margin-block: 6px; }
+.saas-ui.s-preview-fullscreen .s-settings .s-profile .s-avatar { width: 40px; height: 40px; }
+.saas-ui.s-preview-fullscreen .s-settings-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+.saas-ui.s-preview-fullscreen .s-settings-bio { grid-column: 1 / -1; }
+.saas-ui.s-preview-fullscreen .s-settings textarea { min-height: 66px; height: 66px; }
+.saas-ui.s-preview-fullscreen .s-settings .s-preferences { margin: 14px 0; }
+.saas-ui.s-preview-fullscreen .s-settings .s-preferences > .s-row { padding-block: 12px; }
+
+@media (min-width: 901px) {
+  .saas-ui.s-preview-fullscreen .s-integration-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .saas-ui.s-preview-fullscreen .s-integration { padding: 16px 12px; }
+  .saas-ui.s-preview-fullscreen .s-integration p { min-height: 32px; }
+  .saas-ui.s-preview-fullscreen .s-integration .s-button,
+  .saas-ui.s-preview-fullscreen .s-integration .s-secondary { font-size: 11px; }
+  .saas-ui.s-preview-fullscreen .s-panel:has(> .s-command) { max-width: 1100px; }
+  .saas-ui.s-preview-fullscreen .s-command-results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; max-height: none; }
+  .saas-ui.s-preview-fullscreen .s-command-results > .s-overline { grid-column: 1 / -1; }
+  .saas-ui.s-preview-fullscreen .s-command-results a { padding: 4px 7px; margin: 0; }
+}
+@media (min-width: 901px) and (max-height: 760px) {
+  .saas-ui.s-preview-fullscreen .s-auth { max-width: 400px; padding-block: 16px; }
+  .saas-ui.s-preview-fullscreen .s-auth .s-field { margin-block: 6px; }
+  .saas-ui.s-preview-fullscreen .s-auth-brand { margin-bottom: 10px; }
+  .saas-ui.s-preview-fullscreen .s-metrics { margin-block: 12px; }
+  .saas-ui.s-preview-fullscreen .s-metric { padding-block: 10px; }
+  .saas-ui.s-preview-fullscreen .s-metric strong { margin-block: 6px; }
+  .saas-ui.s-preview-fullscreen .s-inset:has(.s-chart) { padding: 12px; }
+  .saas-ui.s-preview-fullscreen .s-chart { height: 110px; }
+  .saas-ui.s-preview-fullscreen .s-bar-track { height: 75px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar { padding-block: 12px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar > .s-overline { margin-block: 12px 6px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar nav { gap: 2px; margin-top: 6px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar nav button { padding-block: 7px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar-bottom { padding-top: 12px; }
+  .saas-ui.s-preview-fullscreen .s-upgrade { padding: 10px; margin-bottom: 10px; }
+  .saas-ui.s-preview-fullscreen .s-plans { margin-top: 14px; }
+  .saas-ui.s-preview-fullscreen .s-plan { padding-block: 14px; }
+  .saas-ui.s-preview-fullscreen .s-plan ul { margin-bottom: 12px; }
+  .saas-ui.s-preview-fullscreen .s-member { padding-block: 12px; }
+  .saas-ui.s-preview-fullscreen .s-notification-list { margin-block: 12px; }
+  .saas-ui.s-preview-fullscreen .s-notification { padding-block: 12px; }
+  .saas-ui.s-preview-fullscreen .s-timeline { margin-top: 16px; }
+  .saas-ui.s-preview-fullscreen .s-timeline article { padding-bottom: 14px; }
+  .saas-ui.s-preview-fullscreen .s-timeline .s-inset { margin-top: 8px; padding-block: 8px; }
+  .saas-ui.s-preview-fullscreen .s-usage-list,
+  .saas-ui.s-preview-fullscreen .s-usage { margin-block: 8px; }
+  .saas-ui.s-preview-fullscreen .s-panel:has(> .s-usage-list) > .s-inset { padding-block: 10px; }
+  .saas-ui.s-preview-fullscreen .s-panel:has(> .s-usage-list) > .s-step-actions { margin-top: 14px; }
+}
+
+@media (max-width: 900px) {
+  .saas-ui.s-preview-fullscreen { grid-template-rows: 76px minmax(0, 1fr); }
+  .saas-ui.s-preview-fullscreen .s-experience-heading { flex-wrap: wrap; gap: 5px; padding: 6px 14px; }
+  .saas-ui.s-preview-fullscreen .s-experience-heading > .s-experience-controls { width: 100%; justify-content: space-between; gap: 8px; }
+}
+@media (max-width: 600px) {
+  .saas-ui.s-preview-fullscreen .s-fit-content { padding: 8px 14px; }
+  .saas-ui.s-preview-fullscreen .s-panel { padding: 16px 18px; }
+  .saas-ui.s-preview-fullscreen .s-settings-fields { grid-template-columns: minmax(0, 1fr); }
+  .saas-ui.s-preview-fullscreen .s-settings .s-input-wrap { min-height: 42px; }
+  .saas-ui.s-preview-fullscreen .s-settings .s-input-wrap input { padding-block: 8px; }
+  .saas-ui.s-preview-fullscreen .s-sidebar-demo,
+  .saas-ui.s-preview-fullscreen .s-header-demo { padding: 0; }
+}

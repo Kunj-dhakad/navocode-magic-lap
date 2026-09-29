@@ -1,0 +1,11 @@
+'use client';
+import { useState } from 'react';
+import { Panel, Avatar, Button, Field, Notice, Tabs } from './UI';
+
+export default function Settings() {
+  const [tab, setTab] = useState('Profile');
+  const [profile, setProfile] = useState({ name: 'Alex Morgan', email: 'alex@example.com', bio: 'Building thoughtful things for the web.' });
+  const [preferences, setPreferences] = useState({ 'Product updates': true, 'Weekly digest': false, 'Team activity': true });
+  const [saved, setSaved] = useState('');
+  return <Panel title="Make yourself at home." description="The little details that make this workspace yours." icon="settings" className="s-settings"><Tabs options={['Profile', 'Notifications']} value={tab} onChange={v => { setTab(v); setSaved(''); }} /><form onSubmit={e => { e.preventDefault(); setSaved('Your preferences are saved for this demo session.'); }} onChange={() => setSaved('')}>{tab === 'Profile' ? <><div className="s-person s-profile"><Avatar name={profile.name || 'A'} /><div><b>Your personal profile</b><small>Visible to your workspace</small></div></div><div className="s-settings-fields"><Field label="Display name" value={profile.name} onChange={e => setProfile(v => ({ ...v, name: e.target.value }))} required /><Field label="Email address" type="email" icon="mail" value={profile.email} onChange={e => setProfile(v => ({ ...v, email: e.target.value }))} required /><label className="s-field s-settings-bio"><span>About you</span><textarea rows={3} maxLength={200} value={profile.bio} onChange={e => setProfile(v => ({ ...v, bio: e.target.value }))} /></label></div></> : <div className="s-preferences">{Object.entries(preferences).map(([name, enabled]) => <div className="s-row" key={name}><div><b>{name}</b><p className="s-help">{name === 'Product updates' ? 'Fresh features and improvements.' : name === 'Weekly digest' ? 'Your week, thoughtfully summarized.' : 'Stay close to what your team is creating.'}</p></div><button className={`s-switch ${enabled ? 'on' : ''}`} type="button" role="switch" aria-checked={enabled} aria-label={name} onClick={() => { setPreferences(v => ({ ...v, [name]: !v[name] })); setSaved(''); }}><span /></button></div>)}</div>}<Button type="submit">Save changes →</Button></form><Notice>{saved}</Notice></Panel>;
+}
