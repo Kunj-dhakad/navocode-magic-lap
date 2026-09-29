@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Starborn from './Starborn';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 export default function MagicExperience({ item }) {
@@ -21,6 +22,7 @@ export default function MagicExperience({ item }) {
 
 function renderExperiment(slug) {
   switch (slug) {
+    case 'starborn': return <Starborn />;
     case 'runaway-login': return <RunawayLogin />;
     case 'pull-cord-lamp': return <PullCordLamp />;
     case 'magnetic-cta': return <MagneticCTA />;

@@ -1,0 +1,54 @@
+.starCollection {
+  padding: 70px clamp(18px, 5vw, 72px) 35px;
+  background: radial-gradient(ellipse at 15% 10%, #9c6aff0b, transparent 40%);
+}
+.starCollectionHeading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 42px; }
+.starCollectionEyebrow { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; font: 10px ui-monospace, monospace; letter-spacing: .13em; color: #8d829e; }
+.starCollectionEyebrow > span { padding: 7px 10px; border: 1px solid #b28aff35; border-radius: 5px; background: #b28aff0b; color: #c8abff; font-size: 9px; }
+.starCollectionHeading h2 { margin: 0; font-size: clamp(46px, 5.5vw, 76px); font-weight: 500; line-height: 1.03; letter-spacing: -.06em; }
+.starCollectionHeading h2 em { font-family: Georgia, serif; font-weight: 400; color: #c5a1ff; }
+.starCollectionHeading p:last-child { color: #9790a5; font-size: 14px; line-height: 1.8; margin: 20px 0 0; }
+.starCollectionCount { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; padding-bottom: 5px; }
+.starCollectionCount strong { font-size: 48px; font-weight: 400; letter-spacing: -.06em; color: #dfceff; }
+.starCollectionCount strong span { color: #595262; font-size: 30px; }
+.starCollectionCount > span { font: 8px ui-monospace, monospace; letter-spacing: .12em; color: #9e91ae; }
+.starCollectionCount i, .starCollectionBadge i { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #c3a1ff; box-shadow: 0 0 10px #b98cff; margin-right: 6px; vertical-align: middle; }
+.starCollectionBar { display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; border-top: 1px solid #ffffff12; color: #9a8ba9; font: 9px ui-monospace, monospace; letter-spacing: .12em; }
+.starCollectionBar b { color: #594667; padding: 0 6px; }
+.starCollectionGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.starCollectionCard { display: flex; flex-direction: column; min-width: 0; padding: 20px; border-radius: 16px; border: 1px solid #ffffff12; background: linear-gradient(145deg, #121019, #0c0b11); overflow: hidden; }
+.starCollectionCardTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; font: 10px ui-monospace, monospace; color: #8d819d; }
+.starCollectionBadge { padding: 6px 8px; border: 1px solid #ffffff0c; border-radius: 5px; font-size: 7px; letter-spacing: .08em; color: #99909f; }
+.starCollectionLive { border-color: #ad7aff65; background: radial-gradient(ellipse at 50% 35%, #a16bff16, transparent 65%), #110d1b; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.starCollectionLive:hover { transform: translateY(-4px); border-color: #c7a4ff; box-shadow: 0 10px 45px #9856ff16; }
+.starCollectionLive:focus-visible { outline: 2px solid #dac3ff; outline-offset: 4px; }
+.starCollectionLive .starCollectionBadge { color: #d6b9ff; border-color: #b98cff30; background: #b98cff0a; }
+.starCollectionArt, .starCollectionMystery { position: relative; display: grid; place-items: center; height: 170px; margin: 10px 0; }
+.starCollectionArt svg { position: relative; width: 200px; max-width: 100%; height: 170px; overflow: visible; filter: drop-shadow(0 0 7px #aa7bff80); }
+.starCollectionArt circle { fill: #faf1ff; }
+.starCollectionStarLine { stroke: #dec5ff; stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1; animation: starCardDraw 8s linear infinite; }
+.starCollectionStarFill { fill: #b58cff20; stroke: #c4a0ff40; stroke-width: .6; animation: starCardBloom 8s linear infinite; }
+.starCollectionSpark { fill: #f8eaff; animation: starCardBloom 8s linear infinite; }
+.starCollectionOrbit { position: absolute; width: 156px; height: 156px; border: 1px solid #b98cff15; border-radius: 50%; }
+.starCollectionOrbit:after { content: ''; position: absolute; inset: -10px; border: 1px dashed #b98cff0c; border-radius: 50%; }
+.starCollectionCardCopy { flex: 1; }
+.starCollectionCardCopy p { margin: 0 0 10px; font: 7px ui-monospace, monospace; letter-spacing: .1em; color: #ab8bc5; }
+.starCollectionCardCopy h3 { margin: 0 0 10px; font-size: 25px; font-weight: 500; letter-spacing: -.04em; }
+.starCollectionCardCopy > span { display: block; color: #aaa0b6; font-size: 12px; line-height: 1.7; }
+.starCollectionCardFoot { display: flex; justify-content: space-between; align-items: center; min-height: 36px; margin-top: 22px; padding-top: 15px; border-top: 1px solid #ffffff0d; font: 8px ui-monospace, monospace; letter-spacing: .1em; color: #c6a5f3; }
+.starCollectionCardFoot > span:last-child { font-size: 19px; line-height: 16px; }
+.starCollectionSoon .starCollectionCardCopy h3 { color: #aca4b7; font-size: 23px; }
+.starCollectionSoon .starCollectionCardCopy p, .starCollectionSoon .starCollectionCardFoot { color: #83768e; }
+.starCollectionSoon .starCollectionCardCopy > span { color: #8e859b; }
+.starCollectionMystery { color: #574563; }
+.starCollectionMystery > i { position: absolute; width: 85px; height: 85px; border: 1px solid #a587c218; border-radius: 50%; }
+.starCollectionMystery > i:nth-child(2) { width: 116px; height: 116px; border-style: dashed; opacity: .5; }
+.starCollectionMystery > span { font-size: 27px; opacity: .65; }
+.starCollectionMystery-1 > i { border-radius: 24px; transform: rotate(45deg); }
+.starCollectionMystery-2 > i { height: 60px; transform: rotate(-30deg); }
+@keyframes starCardDraw { 0%, 8% { stroke-dashoffset: 1; } 72%, 94% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes starCardBloom { 0%, 70% { opacity: 0; } 80%, 94% { opacity: 1; } 100% { opacity: 0; } }
+@media (max-width: 1100px) { .starCollectionGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .starCollection { padding-top: 42px; } .starCollectionGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .starCollectionCount { display: none; } .starCollectionHeading { margin-bottom: 28px; } .starCollectionCard { padding: 16px; } .starCollectionBar { font-size: 8px; letter-spacing: .03em; } }
+@media (max-width: 480px) { .starCollectionGrid { grid-template-columns: 1fr; } .starCollectionCard { padding: 22px; } .starCollectionArt, .starCollectionMystery { height: 155px; } }
+@media (prefers-reduced-motion: reduce) { .starCollectionStarLine, .starCollectionStarFill, .starCollectionSpark { animation: none; } .starCollectionLive { transition: none; } }
