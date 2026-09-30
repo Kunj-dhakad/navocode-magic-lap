@@ -1,0 +1,21 @@
+.saas-ui.s-particle-reveal-experience .s-star-frame { max-width: 1000px; height: 100%; }
+.particleReveal { position: relative; display: flex; flex-direction: column; width: 100%; height: 100%; min-height: 0; overflow: hidden; border: 1px solid #a890ff66; border-radius: 20px; color: #f6f0ff; background: radial-gradient(ellipse at 50% 45%, #26385944, transparent 62%), #080b16; box-shadow: 0 0 30px #9f7aef16, 0 24px 60px #0005; }
+.pr-heading { padding: 30px 18px 0; text-align: center; flex-shrink: 0; }
+.pr-heading > span { font: 8px ui-monospace, monospace; letter-spacing: .2em; color: #afa2c5; }
+.saas-ui .pr-heading h2 { margin: 12px 0 0; font-size: clamp(27px, 4.5cqw, 40px); font-weight: 500; letter-spacing: -.055em; line-height: 1.12; }
+.pr-heading h2 em { font-family: Georgia, serif; color: #a9daef; font-weight: 400; }
+.pr-art { position: relative; flex: 1; min-height: 0; }
+.pr-art canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.pr-editor { padding: 0 16px 22px; text-align: center; flex-shrink: 0; }
+.pr-options { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.pr-options button { min-height: 36px; padding: 8px 16px; border: 1px solid #c7a9ff30; border-radius: 8px; background: #b69aff06; color: #b7abc9; cursor: pointer; font-size: 11px; }
+.pr-options button[aria-pressed=true] { color: #e8dfff; border-color: #bca4ff70; background: #b69aff22; }
+.pr-options .pr-upload { color: #25173a; background: linear-gradient(120deg, #e9efff, #c8baff); border-color: #d9c9ff; }
+.pr-upload span { margin-left: 10px; }
+.pr-options button:focus-visible { outline: 2px solid #cbb9ff; outline-offset: 3px; }
+.pr-help { margin: 12px 0 8px; color: #8e84a0; font-size: 9px; }
+.pr-status { display: block; color: #afa0bf; font: italic 12px Georgia, serif; }
+.pr-error { margin: 8px 0; color: #ffc4d5; font-size: 11px; }
+.pr-editor .sb-actions { justify-content: center; margin-top: 12px; }
+@container (max-width: 400px) { .pr-heading h2 em { display: block; } .pr-options { gap: 6px; } .pr-options button { padding: 8px 12px; } }
+@container (max-height: 380px) { .pr-heading { padding-top: 14px; } .pr-heading > span, .pr-help { display: none; } .saas-ui .pr-heading h2 { margin: 0; font-size: 25px; } .pr-editor { padding-bottom: 12px; } .pr-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }

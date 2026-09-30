@@ -1,0 +1,18 @@
+.saas-ui.s-black-hole-experience .s-star-frame { max-width: 1100px; height: 100%; }
+.blackHoleEffect { position: relative; isolation: isolate; width: 100%; height: 100%; min-height: 0; overflow: hidden; border: 1px solid #d8ac7860; border-radius: 20px; background: radial-gradient(ellipse at 50% 60%, #21223966, transparent 65%), #060910; color: #f6f0ff; box-shadow: 0 0 35px #e69b4010, 0 24px 60px #0005; }
+.bh-space { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: crosshair; touch-action: none; -webkit-tap-highlight-color: transparent; }
+.bh-space canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+.bh-space:focus-visible { outline: 2px solid #ffd8a2; outline-offset: -6px; border-radius: 20px; }
+.bh-heading { position: absolute; top: 30px; left: 18px; right: 18px; text-align: center; pointer-events: none; }
+.bh-heading > span { color: #b5a48c; font: 8px ui-monospace, monospace; letter-spacing: .2em; }
+.saas-ui .bh-heading h2 { margin: 12px 0 10px; font-size: clamp(27px, 4.5cqw, 44px); font-weight: 500; letter-spacing: -.055em; line-height: 1.12; }
+.bh-heading h2 em { font-family: Georgia, serif; font-weight: 400; color: #f5c58c; }
+.bh-heading p { margin: 0; color: #a8a0b2; font-size: 12px; }
+.bh-footer { position: absolute; left: 24px; right: 24px; bottom: 22px; display: flex; justify-content: space-between; align-items: center; gap: 12px; pointer-events: none; font: 7px ui-monospace, monospace; letter-spacing: .12em; color: #a79b8e; }
+.bh-footer i { display: inline-block; width: 4px; height: 4px; border-radius: 50%; margin-right: 7px; background: #ad97bd; }
+.bh-footer .bh-active { color: #e8bc85; }
+.bh-active i { background: #ffc985; box-shadow: 0 0 10px #ffb75b; }
+.bh-footer b { color: #ffe6c6; font-size: 16px; font-weight: 400; margin-right: 5px; }
+.bh-controls { position: absolute; bottom: 56px; left: 0; right: 0; display: flex; justify-content: center; }
+@container (max-width: 400px) { .bh-heading { top: 25px; } .bh-heading h2 em { display: block; } .bh-footer { left: 14px; right: 14px; font-size: 6px; letter-spacing: .04em; } }
+@container (max-height: 380px) { .bh-heading { top: 16px; } .bh-heading > span, .bh-heading p { display: none; } .saas-ui .bh-heading h2 { font-size: 26px; margin: 0; } .bh-footer { bottom: 14px; } }

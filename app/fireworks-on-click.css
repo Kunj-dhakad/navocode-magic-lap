@@ -1,0 +1,22 @@
+.saas-ui.s-fireworks-experience .s-star-frame { max-width: 1100px; height: 100%; }
+.fireworksOnClick { position: relative; isolation: isolate; width: 100%; height: 100%; min-height: 0; overflow: hidden; border: 1px solid #b48aff66; border-radius: 20px; background: radial-gradient(ellipse at 50% 115%, #43235177, transparent 55%), radial-gradient(ellipse at 15% 10%, #27235b55, transparent 50%), #070a16; color: #f6f0ff; box-shadow: 0 0 35px #7344da18, 0 24px 60px #0005; }
+.fireworksOnClick:before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35; background-image: radial-gradient(circle, #d8c9ff 1px, transparent 1.5px), radial-gradient(circle, #a6d2ff .7px, transparent 1.2px); background-size: 127px 139px, 193px 181px; background-position: 26px 41px, 83px 62px; }
+.fw-sky { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: crosshair; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.fw-sky canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+.fw-sky:focus-visible { outline: 2px solid #d6b7ff; outline-offset: -6px; border-radius: 20px; }
+.fw-heading { position: absolute; top: 30px; left: 16px; right: 16px; text-align: center; pointer-events: none; }
+.fw-heading > span { color: #b6a4c9; font: 8px ui-monospace, monospace; letter-spacing: .2em; }
+.saas-ui .fw-heading h2 { margin: 12px 0 10px; font-size: clamp(28px, 5cqw, 46px); font-weight: 500; letter-spacing: -.055em; line-height: 1.1; }
+.fw-heading h2 em { font-family: Georgia, serif; font-weight: 400; color: #f4b9dc; }
+.fw-heading p { margin: 0; color: #a99dbd; font-size: 12px; }
+.fw-invitation { position: absolute; top: 57%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 100%; pointer-events: none; color: #e5caff; }
+.fw-invitation > span { font-size: 44px; text-shadow: 0 0 24px #d8a4ff; }
+.fw-invitation > i { position: absolute; top: -17px; width: 95px; height: 95px; border: 1px solid #d2a3ff22; border-radius: 50%; }
+.fw-invitation small { margin-top: 34px; color: #a18aaf; font: 7px ui-monospace, monospace; letter-spacing: .15em; }
+.fw-footer { position: absolute; left: 24px; right: 24px; bottom: 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: none; color: #ae98c4; font: 7px ui-monospace, monospace; letter-spacing: .12em; }
+.fw-footer i { display: inline-block; width: 4px; height: 4px; margin-right: 6px; border-radius: 50%; background: #f6bbdd; box-shadow: 0 0 10px #f6bbdd88; }
+.fw-count { color: #e8d2f8; font-size: 16px; }
+.fw-count b { font-size: 7px; font-weight: 400; color: #ad96be; }
+.fw-controls { position: absolute; bottom: 56px; left: 0; right: 0; display: flex; justify-content: center; }
+@container (max-width: 400px) { .fw-heading { top: 25px; } .fw-footer { left: 14px; right: 14px; font-size: 6px; letter-spacing: .04em; } }
+@container (max-height: 380px) { .fw-heading { top: 16px; } .fw-heading > span, .fw-heading p { display: none; } .saas-ui .fw-heading h2 { font-size: 26px; margin: 0; } .fw-footer { bottom: 14px; } .fw-invitation small { margin-top: 14px; } }

@@ -1,0 +1,22 @@
+.saas-ui.s-cursor-trail-experience .s-star-frame { max-width: 1100px; height: 100%; }
+.magicCursorTrail { position: relative; isolation: isolate; width: 100%; height: 100%; min-height: 0; overflow: hidden; border: 1px solid #ac8eff66; border-radius: 20px; color: #f6f0ff; background: radial-gradient(ellipse at 20% 80%, #123d4b33, transparent 60%), radial-gradient(ellipse at 85% 10%, #42225244, transparent 60%), #080b16; box-shadow: 0 0 30px #9867ef16, 0 24px 60px #0005; }
+.mct-field { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: crosshair; touch-action: none; -webkit-tap-highlight-color: transparent; }
+.mct-field canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+.mct-field:focus-visible { outline: 2px solid #c8b0ff; outline-offset: -6px; border-radius: 20px; }
+.mct-heading { position: absolute; top: 30px; left: 18px; right: 18px; text-align: center; pointer-events: none; }
+.mct-heading > span { font: 8px ui-monospace, monospace; letter-spacing: .2em; color: #b3a0c9; }
+.saas-ui .mct-heading h2 { margin: 12px 0 10px; font-size: clamp(27px, 4.5cqw, 44px); font-weight: 500; line-height: 1.12; letter-spacing: -.055em; }
+.mct-heading h2 em { font-family: Georgia, serif; font-weight: 400; color: #c8b1ff; }
+.mct-heading p { margin: 0; color: #a99cbd; font-size: 12px; }
+.mct-invitation { position: absolute; top: 50%; left: 0; right: 0; text-align: center; pointer-events: none; color: #b8e9f8; }
+.mct-invitation > span { font-size: 48px; text-shadow: 0 0 25px #be9cff; }
+.mct-invitation small { display: block; margin-top: 18px; font: 7px ui-monospace, monospace; letter-spacing: .15em; color: #938aa9; }
+.mct-bottom { position: absolute; bottom: 22px; left: 16px; right: 16px; display: flex; flex-direction: column; align-items: center; gap: 12px; pointer-events: none; }
+.mct-modes { display: flex; padding: 4px; gap: 4px; border: 1px solid #cba5ff30; border-radius: 12px; background: #100f22dd; pointer-events: auto; }
+.mct-modes button { min-width: 70px; min-height: 36px; padding: 8px 16px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #b1a5c1; cursor: pointer; font-size: 11px; }
+.mct-modes button[aria-pressed=true] { color: #eee3ff; border-color: #bd9bff50; background: #b38cff26; }
+.mct-modes button:focus-visible { outline: 2px solid #d2baff; outline-offset: 2px; }
+.mct-bottom > span { font: 7px ui-monospace, monospace; letter-spacing: .1em; color: #8f829f; }
+.mct-bottom .sb-actions { pointer-events: auto; }
+@container (max-width: 400px) { .mct-heading h2 em { display: block; } }
+@container (max-height: 380px) { .mct-heading { top: 16px; } .mct-heading > span, .mct-heading p, .mct-bottom > span { display: none; } .saas-ui .mct-heading h2 { margin: 0; font-size: 25px; } .mct-bottom { bottom: 12px; } .mct-invitation { top: 34%; } .mct-invitation small { margin-top: 2px; } }

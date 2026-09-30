@@ -26,6 +26,12 @@ import Onboarding from './saas/Onboarding';
 import Usage from './saas/Usage';
 import Starborn from './Starborn';
 import StarAscension from './StarAscension';
+import GalaxyGenerator from './GalaxyGenerator';
+import FireworksOnClick from './FireworksOnClick';
+import BlackHoleEffect from './BlackHoleEffect';
+import MagicCursorTrail from './MagicCursorTrail';
+import TextToParticles from './TextToParticles';
+import ParticleReveal from './ParticleReveal';
 
 const components = { Login, Signup, ForgotPassword, ResetPassword, Verification, Dashboard, Sidebar, Header, Footer, Pricing, Billing, Team, Notifications, Settings, CommandMenu, FileUpload, Integrations, Activity, Onboarding, Usage };
 
@@ -46,7 +52,9 @@ export default function SaasExperience({ item, source, sharedSource, collection 
   const [run, setRun] = useState(0);
   const [cinema, setCinema] = useState(false);
   const [starControlsTarget, setStarControlsTarget] = useState(null);
-  const Component = isStarMagic ? ({ Starborn, StarAscension })[item.component] : components[item.component];
+  const Component = isStarMagic ? ({ Starborn, StarAscension, GalaxyGenerator, FireworksOnClick, BlackHoleEffect, MagicCursorTrail, TextToParticles, ParticleReveal })[item.component] : components[item.component];
+  const starExperiments = [{ slug: 'starborn', title: 'Starborn' }, { slug: 'star-ascension', title: 'Star Ascension' }, { slug: 'galaxy-generator', title: 'Galaxy Generator' }, { slug: 'fireworks-on-click', title: 'Fireworks on Click' }, { slug: 'black-hole-effect', title: 'Black Hole Effect' }, { slug: 'magic-cursor-trail', title: 'Magic Cursor Trail' }, { slug: 'text-to-particles', title: 'Text to Particles' }, { slug: 'particle-reveal', title: 'Particle Reveal' }];
+  const nextStar = starExperiments[(starExperiments.findIndex(entry => entry.slug === item.slug) + 1) % starExperiments.length];
   const index = saasItems.findIndex(entry => entry.slug === item.slug);
   const previous = saasItems[(index + saasItems.length - 1) % saasItems.length];
   const next = saasItems[(index + 1) % saasItems.length];
@@ -71,7 +79,7 @@ export default function SaasExperience({ item, source, sharedSource, collection 
   }, []);
 
   return <MagicContext.Provider value={{ run, motion }}>
-    <main className={`saas-ui s-experience ${isStarMagic ? 's-star-experience' : ''} ${motion ? '' : 's-motion-off'} ${cinema ? 's-cinema' : ''} ${view === 'Preview only' ? 's-preview-fullscreen' : ''}`}>
+    <main className={`saas-ui s-experience ${isStarMagic ? 's-star-experience' : ''} ${item.slug === 'fireworks-on-click' ? 's-fireworks-experience' : ''} ${item.slug === 'black-hole-effect' ? 's-black-hole-experience' : ''} ${item.slug === 'magic-cursor-trail' ? 's-cursor-trail-experience' : ''} ${item.slug === 'text-to-particles' ? 's-text-particles-experience' : ''} ${item.slug === 'particle-reveal' ? 's-particle-reveal-experience' : ''} ${motion ? '' : 's-motion-off'} ${cinema ? 's-cinema' : ''} ${view === 'Preview only' ? 's-preview-fullscreen' : ''}`}>
       <div className="s-ambient" aria-hidden="true" />
       <header className="s-lab-header">
         <Link href={collectionHref} className="s-back">← {isStarMagic ? 'All magic' : 'All components'}</Link>
@@ -108,13 +116,13 @@ export default function SaasExperience({ item, source, sharedSource, collection 
           <MagicAtmosphere key={`atmosphere-${version}`} />
           <div className="s-preview-label"><span><i /> LIVE PREVIEW</span><span>{isStarMagic ? 'STARS · LIGHT · A LITTLE MAGIC' : 'MOVE · TYPE · MAKE MAGIC'}</span></div>
           <div className="s-fit-viewport"><div className="s-fit-content">{isStarMagic ? <div className="s-star-frame"><Component key={version} motion={motion} externalControls controlsTarget={starControlsTarget} /></div> : <Component key={version} />}</div></div>
-          <p className="s-demo-note">{isStarMagic ? 'One spark. One line at a time. Replay and make it yours.' : 'Frontend demo · Sample data · No real accounts or payments'}</p>
+          <p className="s-demo-note">{item.slug === 'particle-reveal' ? 'Scattered dots. A familiar shape. Reveal your own image.' : item.slug === 'magic-cursor-trail' ? 'Move, drag, or use arrow keys. Leave a little light behind.' : item.slug === 'text-to-particles' ? 'Your words, written in light. Try a preset or make it personal.' : item.slug === 'black-hole-effect' ? 'Move or drag to bend the stars. Arrow keys work too.' : item.slug === 'fireworks-on-click' ? 'Click or tap the sky. Make a little celebration.' : item.slug === 'galaxy-generator' ? 'Click the cosmos. Every galaxy is a new beginning.' : isStarMagic ? 'One spark. One line at a time. Replay and make it yours.' : 'Frontend demo · Sample data · No real accounts or payments'}</p>
         </section>}
       </div>
       {isStarMagic ? <nav className="s-component-pagination" aria-label="More star magic">
         <Link href={collectionHref}><small>← COLLECTION</small><b>All 20 experiments</b></Link>
         <Link href={collectionHref} className="s-pagination-grid" aria-label="All star magic"><Icon name="grid" size={16} /></Link>
-        <Link href={`/magic/${item.slug === 'starborn' ? 'star-ascension' : 'starborn'}`}><small>{item.slug === 'starborn' ? 'NEXT EXPERIMENT →' : '← PREVIOUS EXPERIMENT'}</small><b>{item.slug === 'starborn' ? 'Star Ascension' : 'Starborn'}</b></Link>
+        <Link href={`/magic/${nextStar.slug}`}><small>NEXT EXPERIMENT →</small><b>{nextStar.title}</b></Link>
       </nav> : <nav className="s-component-pagination" aria-label="More SaaS components">
         <Link href={`/saas/${previous.slug}`}><small>← PREVIOUS</small><b>{previous.title}</b></Link>
         <Link href="/#saas-components" className="s-pagination-grid" aria-label="All SaaS components"><Icon name="grid" size={16} /></Link>

@@ -13,7 +13,7 @@ export default async function MagicPage({ params }) {
   const { slug } = await params;
   const item = getMagicItem(slug);
   if (!item) notFound();
-  if (slug === 'starborn' || item.component === 'StarAscension') {
+  if (slug === 'starborn' || ['StarAscension', 'GalaxyGenerator', 'FireworksOnClick', 'BlackHoleEffect', 'MagicCursorTrail', 'TextToParticles', 'ParticleReveal'].includes(item.component)) {
     const component = item.component || 'Starborn';
     const stylesheet = item.stylesheet || 'starborn.css';
     const [source, sharedSource] = await Promise.all([
